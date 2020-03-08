@@ -31,5 +31,5 @@ library(help="rpart")   # 텍스트 기반 패키지 설명서
 - 풀다운 메뉴에서 File - Import Dataset 혹은 Environment 탭 안의 Import Dataset 버튼을 눌러 여러 형태의 데이터를 읽을 수 있다
 
 5. R의 기타 기능
-- 구글, 스택 오버플로우, DataCamp.com의 Quick-R 사이트(www.statmethods.net)에서 R, 통계, 그래프 그리기에 대한 튜토리얼 및 도움말 풍부
+- 구글, 스택 오버플로우, DataCamp.com의 Quick-R 사이트(www.statmethods.net) 에서 R, 통계, 그래프 그리기에 대한 튜토리얼 및 도움말 풍부
 - R의 최신 패키지들은 The R Journal, Journal of Statistical Software 등과 같은 무료 저널을 통해 받을 수 있다.
