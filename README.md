@@ -11,12 +11,12 @@
 
 2. R 패키지의 활성화
 - 사용자가 직접 설치한 패키지의 경우, **install.packages("rpart")** 후에 꼭 **library("rpart")** 명령어를 실행하여 패키지를 _활성화_ 해주어야 한다!
-``` sh
-install.packages("rpart")
-library("rpart")
-help(package="rpart")   # 웹 기반 패키지 설명서
-library(help="rpart")   # 텍스트 기반 패키지 설명서
-```
+  ``` sh
+  install.packages("rpart")
+  library("rpart")
+  help(package="rpart")   # 웹 기반 패키지 설명서
+  library(help="rpart")   # 텍스트 기반 패키지 설명서
+  ```
 **설치 에러날시 관리자 권한으로 실행**   
 - R 콘솔에서 data(package="패키지명") 명령문 사용시 저장되어있는 데이터의 목록 출력. data(데이터명, package="패키지명") 명령문을 통해 패키지 내부에 저장된 데이터를 불러오는 것도 가능
 
@@ -40,10 +40,10 @@ library(help="rpart")   # 텍스트 기반 패키지 설명서
 1. 데이터 입력
 - R 활용 작업시 작업 디렉토리 변경 필요
   - 기본 작업경로가 길거나 복잡할 경우 경로를 일일히 설정/찾아내는 것이 번거로우므로 작업디렉토리를 변경
-  ```sh
-  setwd('D:\\datav')
-  // 현 작업 디렉토리 확인은 getwd() 함수를 
-  ```
+    ```sh
+    setwd('D:\\datav')
+    // 현 작업 디렉토리 확인은 getwd() 함수를 
+    ```
 
 2. 데이터 저장
 - 
