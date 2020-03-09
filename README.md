@@ -48,16 +48,16 @@
     - c() 함수는 가장 기본적인 데이터 입력 방법
       - 좌측에 벡터 이름(객체명), <- 나 = 연산자는 데이터가 할당됨 의미
       - 우측은 입력대상인 데이터의 관측값이 c 함수 내에 나타나게 됨
-    ```sh
-    ex) 1,2,3,4,5 다섯 개의 관측값을 갖는 벡터 x 생성
-    > x <- c(1,2,3,4,5)
-    > x
-    [1] 1 2 3 4 5
-    
-    ex) 괄호로 생성문 전체를 감싸 10, 20, 30, 40, 50 다섯 개의 관측값을 갖는 벡터 y를 생성하되 입력결과를 바로 화면에 출력
-    > (y <- c(10,20,30,40,50))
-    [1] 10 20 30 40 50
-    ```
+      ```sh
+      ex) 1,2,3,4,5 다섯 개의 관측값을 갖는 벡터 x 생성
+      > x <- c(1,2,3,4,5)
+      > x
+      [1] 1 2 3 4 5
+
+      ex) 괄호로 생성문 전체를 감싸 10, 20, 30, 40, 50 다섯 개의 관측값을 갖는 벡터 y를 생성하되 입력결과를 바로 화면에 출력
+      > (y <- c(10,20,30,40,50))
+      [1] 10 20 30 40 50
+      ```
     - cbind() 함수를 사용한 동일 길이의 두 벡터 결합
       ```sh
       > x<-c(1,2,3,4,5)
@@ -100,13 +100,61 @@
   - 시작시 저장할 파일명을 지정하고 원하는 함수를 실행한 뒤 종료시 sink()로 마감
   ```sh
   // sink()로 여닫기
-  > sink('printa.txt')
-  > summary(iris)
+  > sink('printa.txt')  // 작업디렉토리에 해당 파일이 생성된다
+  > summary(iris)       // summary: 중간값, 25%, 75%, 평균 등 기술통계량 계산 함수 | iris: R 내부데이터로 꽃 품종별 데이터이다.
   > sink()
   ```
+- write.csv() 함수를 이용한 데이터 저장
+  - R에서 생성된 객체(obj)는 외부파일로 저장할 수 있다.
+  - 다르경로가 지정되어있지 않다면 이 파일은 기존 워킹 디렉토리에 저장된다.
+  ```sh
+  # csv 파일: Comma Separated Value로 ','로 각 데이터가 구분된다. txt형태로 되어있다.
+  > write.csv(dat, 'dat_exam1.csv')  // 데이터 이름, (경로 + )파일명 설정 가능. 경로명 없을시 현 wd에 저장됨
+  ```
+- write.table() 함수를 이용한 데이터 저장
+  - write.table()함수는 comma로 구분하지 않고 기본 구분자를 공백으로 설정한다.
+  - 공백 대신 sep="문자" 옵션을 세번째 인자로 줄 수 있다.
+  ```write.table(dat, 'dat_exam2.txt', sep=",")
 
 3. 데이터 불러오기
-- 
+- read.csv() 함수를 이용하여 간단하게 불러올 수 있다.
+  ```sh
+  ** 외부데이터를 불러올땐 새로운 객체에 넣어줘야 호출할 수 있다.
+  ** 만약 불러오는 데이터가 comma separated가 아니면 모두 하나의 변수로 취급하니 주의!
+  > dat2 <- read.csv("dat_exam1.csv")
+  ** 변수명 (i.e. x y)이 들어가는 데이터면서 comma separated 라면 header=T 옵션을 주어야 한다
+  > us_dat<-read.csv("USArrestd.csv", header=T)
+  > head(us_dat)
+  ```
+- 불러온 자료의 자료구조를 확인하려면 str() 함수 사용
+  ```sh
+  > str(us_dat)
+  'data.frame': 50 obs. of 5 variables:
+  $ State: Factor w/ 50 levels "Alabama", "Alaska"...: 1 2 3 4 5 6 7 8 9 10 ...
+  // State 변수가 자동으로 Factor 변수로 변환되는데, 이를 방지하려면 stringAsFactors=F" 옵션 추가하여 문자로 인식
+  ```
+- 문자변수가 Factor 변수로 인식되지 않도록 지정
+  ```sh
+  > us_dat2 < read.csv("USArrestd.csv", header=T, stringAsFactor=F)
+  > str(us_dat2)
+  'data.frame': 50 obs. of 5 variables:
+  $ State: chr "Alabama" "Alaska" "Arizona" "Arkansas" ...
+  ```
+- read.table() 함수를 이용한 데이터 로드
+  - 텍스트 파일은 read.csv() 외에도 read.table()을 사용하여 불러올 수 있음
+  - 현 wd에 저장된 data_exam2.txt 파일을 read.table() 을 사용하여 불러오기
+    ```sh
+    ** header 옵션 지정여부에 따라 맨 첫줄 관측치를 변수명으로 인식하는지를 결정한다.
+    > new_dat = read.table('dat_exam2.txt', header=T)
+    ```
+- R에서는 결측치가 NA 로 표시되나, 데이터를 읽어오면서 na.strings 와 같은 옵션을 지정해주면 특정 문자를 결측치로 인식한다
+  - 이전에 작업한 객체 dat3이 현 wd에 dat3_exam1.txt라는 이름으로 저장되어 있다고 할 때, 관측값 'aa'를 결측치로 인식하여 데이터 로드하기
+    ```sh
+    ** 마찬가지로 header 옵션 지정여부가 첫째줄 관측치를 변수명으로 인식하는지를 결정.
+    > nadat <- read.table('dat3_exam1.txt', na.strings='aa', header=T)
+    ```
 
 4. 객체(object) 확인 및 삭제
-- 
+- ls() 함수: 현재까지의 작업 중 만들어진 object를 전부 확인할 수 있다
+  - 동일한 변수를 계속 쓸 경우 지속적으로 덮어쓰기된다.
+- rm(list=ls()) : 지금까지 만든 모든 객체를 한번에 삭제한다.
