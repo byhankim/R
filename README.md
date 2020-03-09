@@ -27,9 +27,29 @@ library(help="rpart")   # 텍스트 기반 패키지 설명서
 - 편집기 / 작업공간(Workspace) / 작업이력(history) / R 콘솔 / 그래프(plots) / 패키지 / 도움말 등으로 구성
 
 4. R Studio 사용하기
-- new script에서 작업한 후 실행 코드 블락 드래그한 후 Run 버튼 클릭 혹은 Ctrl+Enter
-- 풀다운 메뉴에서 File - Import Dataset 혹은 Environment 탭 안의 Import Dataset 버튼을 눌러 여러 형태의 데이터를 읽을 수 있다
+- new script(메뉴창에서 열거나 Ctrl + Shift + N) 에서 작업한 후 실행 코드 블락 드래그한 후 Run 버튼 클릭 혹은 Ctrl+Enter
+- setwd(): More에서 현재 워킹 디렉토리 변경 가능
+- Tools -> Global Options : 전체 글꼴, 색 등 테마 변경 가능
+- 직접 데이터 가져오기 : 풀다운 메뉴에서 File - Import Dataset 혹은 Environment 탭 안의 Import Dataset 버튼을 눌러 여러 형태의 데이터를 읽을 수 있다
 
 5. R의 기타 기능
 - 구글, 스택 오버플로우, DataCamp.com의 Quick-R 사이트(www.statmethods.net) 에서 R, 통계, 그래프 그리기에 대한 튜토리얼 및 도움말 풍부
 - R의 최신 패키지들은 The R Journal, Journal of Statistical Software 등과 같은 무료 저널을 통해 받을 수 있다.
+
+## Lec03_데이터 입력과 저장
+1. 데이터 입력
+- R 활용 작업시 작업 디렉토리 변경 필요
+  - 기본 작업경로가 길거나 복잡할 경우 경로를 일일히 설정/찾아내는 것이 번거로우므로 작업디렉토리를 변경
+  ```sh
+  setwd('D:\\datav')
+  // 현 작업 디렉토리 확인은 getwd() 함수를 
+  ```
+
+2. 데이터 저장
+- 
+
+3. 데이터 불러오기
+- 
+
+4. 객체(object) 확인 및 삭제
+- 
